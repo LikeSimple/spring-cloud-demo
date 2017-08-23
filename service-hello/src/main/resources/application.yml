@@ -1,0 +1,11 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://registry-server-3:8761/eureka/,http://registry-server-2:8760/eureka/,http://registry-server-1:8759/eureka/
+server:
+  port: 8762
+spring:
+  application:
+    name: service-hi
+swagger:
+  exclude-path: /error

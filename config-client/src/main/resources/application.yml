@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  rabbitmq:
+    username: rabbit
+    password: 123456
+    port: 5672
+    host: localhost
+server:
+  port: 8881
+management:
+  security:
+    enabled: false
+eureka:
+  client:
+    service-url:
+     # 下列配置为本地高可用环境配置（因服务器地址相同，采用不同端口进行区分，当本项目以下列服务端口启动时，会形成一个本地高可用集群）
+     defaultZone: http://registry-server-3:8761/eureka/,http://registry-server-2:8760/eureka/,http://registry-server-1:8759/eureka/

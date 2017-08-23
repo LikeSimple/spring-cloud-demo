@@ -1,0 +1,15 @@
+management:
+  context-path: /management
+spring:
+  application:
+    name: service-hi-consul
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        healthCheckPath: ${management.context-path}/health
+        healthCheckInterval: 15s
+        instance-id: service-hi-consule
+server:
+  port: 8770

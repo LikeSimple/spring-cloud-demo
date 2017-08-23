@@ -1,0 +1,48 @@
+spring:
+  profiles:
+    active: peer1
+---
+spring:
+  profiles: peer1
+  application:
+    name: eureka-server
+server:
+  port: 8759
+eureka:
+  instance:
+    hostname: regsitry-server-1
+  client:
+#    registerWithEureka: false
+#    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://registry-server-2:8760/eureka/,http://registry-server-3:8761/eureka/
+---
+spring:
+  profiles: peer2
+  application:
+    name: eureka-server
+server:
+  port: 8760
+eureka:
+  instance:
+    hostname: registry-server-2
+  client:
+#    registerWithEureka: false
+#    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://registry-server-1:8759/eureka/,http://registry-server-3:8761/eureka/
+---
+spring:
+  profiles: peer3
+  application:
+    name: eureka-server
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: registry-server-3
+  client:
+#    registerWithEureka: false
+#    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://registry-server-1:8759/eureka/,http://registry-server-2:8760/eureka/

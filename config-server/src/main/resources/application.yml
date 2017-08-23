@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/LikeSimple/spring-cloud-config #default Config Server Uri
+          search-paths: repos
+      label: master
+server:
+  port: 8888
+eureka:
+  client:
+    service-url:
+      defaultZone: http://registry-server-3:8761/eureka/,http://registry-server-2:8760/eureka/,http://registry-server-1:8759/eureka/
