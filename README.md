@@ -23,7 +23,9 @@
 
 
     127.0.0.1       registry-server-1  #port=8759
+    
     127.0.0.1       registry-server-2  #port=8760
+    
     127.0.0.1       registry-server-3  #port=8761
 
 ## 项目说明
