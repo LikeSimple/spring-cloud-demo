@@ -1,0 +1,12 @@
+security:
+  user:
+    name: guest
+    password: guest
+druid:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/spring-cloud-demo-sso?characterEncoding=utf8
+    username: root
+    password: 1234
+management:
+  security:
+    enabled: false
