@@ -1,0 +1,22 @@
+
+spring:
+  application:
+    name: server-zipkin
+  rabbitmq:
+    username: rabbit
+    password: 123456
+  datasource:
+    username: root
+    password: 1234
+    url: jdbc:mysql://localhost/sleuth?useUnicode=yes&autoReconnect=true&useSSL=false
+    initialize: false
+    schema:
+      - classpath:zipkin.sql
+  sleuth:
+    enabled: false
+server:
+  port: 8889
+eureka:
+  client:
+    service-url:
+      default-zone: http://registry-server-3:8761/eureka/,http://registry-server-2:8760/eureka/,http://registry-server-1:8759/eureka/
