@@ -7,3 +7,4 @@ spring:
       discovery:
         enabled: true
         service-id: CONFIG-SERVER
+      label: master

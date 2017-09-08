@@ -7,5 +7,6 @@ server:
 spring:
   application:
     name: service-hi
-swagger:
-  exclude-path: /error
+  rabbitmq:
+    username: rabbit
+    password: 123456

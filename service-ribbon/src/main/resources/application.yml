@@ -7,3 +7,6 @@ server:
 spring:
   application:
     name: service-ribbon
+  rabbitmq:
+    username: rabbit
+    password: 123456
