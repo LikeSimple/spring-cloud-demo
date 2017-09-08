@@ -1,5 +1,11 @@
+spring:
+  profiles:
+    active: dev
+
+---
 
 spring:
+  profiles: dev
   application:
     name: server-zipkin
   rabbitmq:
@@ -9,11 +15,15 @@ spring:
     username: root
     password: 1234
     url: jdbc:mysql://localhost/sleuth?useUnicode=yes&autoReconnect=true&useSSL=false
-    initialize: false
+    initialize: true
     schema:
       - classpath:zipkin.sql
+    continueOnError: true
   sleuth:
     enabled: false
+#zipkin:
+#  storage:
+#    type: mysql
 server:
   port: 8889
 eureka:

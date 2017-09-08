@@ -1,8 +1,9 @@
 spring:
   application:
     name: hystrix-dashboard-turbine
-server:
-  port: 8890
+  rabbitmq:
+    username: rabbit
+    password: 123456
 turbine:
   appConfig: service-ribbon, service-feign
   aggregator:
