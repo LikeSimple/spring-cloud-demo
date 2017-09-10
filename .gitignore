@@ -46,3 +46,4 @@ mvnw*
 
 # sftp configuration file
 sftp-config.json
+/service-sso/.gitignore

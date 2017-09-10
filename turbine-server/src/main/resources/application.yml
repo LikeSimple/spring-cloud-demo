@@ -13,3 +13,5 @@ eureka:
   client:
     service-url:
       default-zone: http://registry-server-3:8761/eureka/,http://registry-server-2:8760/eureka/,http://registry-server-1:8759/eureka/
+server:
+  port: 8775

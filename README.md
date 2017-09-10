@@ -21,12 +21,17 @@
 
 3. hosts文件 
 
-
     127.0.0.1       registry-server-1  #port=8759
     
     127.0.0.1       registry-server-2  #port=8760
     
     127.0.0.1       registry-server-3  #port=8761
+
+4. MySQL
+
+`docker pull mysql:5.7.18`
+
+`docker run --name spring-cloud-demo-mysql -d -p3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7.18`
 
 ## 项目说明
 
@@ -68,3 +73,13 @@
 - ### config-client
 
     演示配置服务消费者，包含热更新数据
+
+- ### turbine-server
+
+    演示基于Hystrix的实时聚合监控服务
+
+- ### sleuth-server
+
+    演示基于Sleuth的链路跟踪服务
+
+

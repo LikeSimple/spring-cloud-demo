@@ -10,7 +10,7 @@ server:
   port: 8759
 eureka:
   instance:
-    hostname: regsitry-server-1
+    hostname: registry-server-1
   client:
 #    registerWithEureka: false
 #    fetchRegistry: false
@@ -46,3 +46,18 @@ eureka:
 #    fetchRegistry: false
     serviceUrl:
       defaultZone: http://registry-server-1:8759/eureka/,http://registry-server-2:8760/eureka/
+
+---
+
+spring:
+  profiles: docker
+  application:
+    name: eureka-server
+server:
+  port: 80
+eureka:
+  instance:
+    hostname: REGISTRY-SERVER
+  client:
+    serviceUrl:
+      defaultZone: REGISTRY-SERVER-ZONE
