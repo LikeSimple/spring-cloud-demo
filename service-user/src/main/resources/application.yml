@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: service-sso
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    initialize: true
+    url: jdbc:mysql://localhost/scd-app-user?useUnicode=yes&autoReconnect=true&useSSL=false
+    username: root
+    password: 1234
+eureka:
+  client:
+    service-url:
+      default-zone: http://registry-server-3:8761/eureka/,http://registry-server-2:8760/eureka/,http://registry-server-1:8759/eureka/
+server:
+  port: 8876
+
+---
+
+spring:
+  profiles: test
+
+---
+
+spring:
+  profiles: prod
