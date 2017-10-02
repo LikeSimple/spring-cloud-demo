@@ -1,0 +1,38 @@
+version: '2'
+services:
+  registry-server:
+    image: my-eureka-server:1.0.0
+    networks:
+      - scd-net
+    ports:
+      - "8081:8080"
+    mem_limit: 128m
+  mq:
+    image: rabbitmq:3.6.10-management-alpine
+    environment:
+      - "RABBITMQ_DEFAULT_USER=rabbit"
+      - "RABBITMQ_DEFAULT_PASS=123456"
+    networks:
+      - scd-net
+    ports:
+      - "15672:15672"
+    mem_limit: 256m
+  db:
+    image: mysql:5.7.18
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    ports:
+      - "3306:3306"
+    networks:
+      - scd-net
+    mem_limit: 256m
+  redis:
+    image: redis:3.2.10-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - scd-net
+    mem_limit: 256m
+networks:
+  scd-net:
+    driver: bridge

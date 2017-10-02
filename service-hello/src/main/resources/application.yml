@@ -10,3 +10,10 @@ spring:
   rabbitmq:
     username: rabbit
     password: 123456
+management:
+  security:
+    enabled: false
+#endpoints:
+#  jolokia:
+#    enabled: true
+#    sensitive: true

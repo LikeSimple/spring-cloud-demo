@@ -1,9 +1,8 @@
-FROM openjdk:8u131-jdk-alpine
-MAINTAINER Jimmy XU
-ENV ACTIVE_PROFILE docker
-ENV SERVICE_PORT 80
-ENV
-COPY target/eureka-server-0.0.1-SNAPSHOT.jar /usr/eureka-server/eureka-server.jar
+FROM openjdk:8u131-jre-alpine
+LABEL Author="Jimmy XU"
 WORKDIR /usr/eureka-server
-EXPORT 80
-ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap", "-jar", "eureka-server.jar"]
+COPY target/eureka-server-0.0.1-SNAPSHOT.jar /usr/eureka-server/eureka-server.jar
+COPY entrypoint.sh /usr/eureka-server
+EXPOSE 8080
+ENV INSTANCE_NAME=registry-server REPLICAS=1 NODE=1
+ENTRYPOINT ["sh", "./entrypoint.sh"]
