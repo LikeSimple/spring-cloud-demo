@@ -1,8 +1,13 @@
 FROM openjdk:8u131-jre-alpine
-LABEL Author="Jimmy XU"
-WORKDIR /usr/eureka-server
-COPY target/eureka-server-0.0.1-SNAPSHOT.jar /usr/eureka-server/eureka-server.jar
-COPY entrypoint.sh /usr/eureka-server
+LABEL Author="Jimmy XU" EMAIL="zhen.xu@newtouch.cn"
+RUN addgroup -S app && adduser -S -g app app
+USER app
+ARG PROJECT_NAME
+ARG PROJECT_VERSION
+ARG APP_NAME="-jar ${PROJECT_NAME}.jar"
+WORKDIR /usr/${PROJECT_NAME}
+COPY target/${PROJECT_NAME}-${PROJECT_VERSION}.jar /usr/${PROJECT_NAME}/${PROJECT_NAME}.jar
+COPY entrypoint.sh /usr/${PROJECT_NAME}
 EXPOSE 8080
-ENV INSTANCE_NAME=registry-server REPLICAS=1 NODE=1
+ENV INSTANCE_NAME=${PROJECT_NAME} REPLICAS=1 NODE=1 JAVA_APP_NAME=${APP_NAME}
 ENTRYPOINT ["sh", "./entrypoint.sh"]
