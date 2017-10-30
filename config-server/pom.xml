@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.newtouch.cloud</groupId>
         <artifactId>spring-cloud-demo-parent</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.9-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
