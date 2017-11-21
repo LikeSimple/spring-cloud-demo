@@ -13,7 +13,7 @@ spring:
     password: 123456
   datasource:
     username: root
-    password: 1234
+    password: 123456
     url: jdbc:mysql://localhost/sleuth?useUnicode=yes&autoReconnect=true&useSSL=false
     initialize: true
     schema:

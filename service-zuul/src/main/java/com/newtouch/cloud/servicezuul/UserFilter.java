@@ -28,9 +28,10 @@ public class UserFilter extends ZuulFilter {
   public Object run() {
     RequestContext ctx = RequestContext.getCurrentContext();
     HttpServletRequest request = ctx.getRequest();
-    //把用户信息加入请求头部
-    ctx.addZuulRequestHeader("X-AUTH-ID", request.getUserPrincipal().getName());
-
+    if (null != request.getUserPrincipal()) {
+      //把用户信息加入请求头部
+      ctx.addZuulRequestHeader("X-AUTH-ID", request.getUserPrincipal().getName());
+    }
     return null;
   }
 }

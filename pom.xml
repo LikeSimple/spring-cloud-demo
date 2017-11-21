@@ -39,6 +39,7 @@
         <module>service-zuul</module>
         <module>sleuth-server</module>
         <module>turbine-server</module>
+        <module>hystrix-dashboard-server</module>
     </modules>
 
     <dependencies>
