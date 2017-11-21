@@ -1,0 +1,9 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://registry-server-3:8761/eureka/,http://registry-server-2:8760/eureka/,http://registry-server-1:8759/eureka/
+spring:
+  application:
+    name: hystrix-dashboard-server
+server:
+  port: 8776
