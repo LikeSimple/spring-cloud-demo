@@ -1,4 +1,4 @@
-FROM openjdk:8u131-jre-alpine
+FROM openjdk:8u151-jre-alpine
 LABEL Author="Jimmy XU" EMAIL="zhen.xu@newtouch.cn"
 RUN addgroup -S app && adduser -S -g app app
 USER app

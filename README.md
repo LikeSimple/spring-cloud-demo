@@ -116,7 +116,7 @@
     在启动整个SpringCloudDemo后，就可以使用如下命令
     ```
     TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDg4MTE0MTksInVzZXJfbmFtZSI6InJlYWRlciIsImF1dGhvcml0aWVzIjpbIkZPT19SRUFEIl0sImp0aSI6ImMzNTUyNGYwLTRkNmEtNDEyZi05MWVlLTFhNDJmNzZiY2VlNSIsImNsaWVudF9pZCI6IndlYl9hcHAiLCJzY29wZSI6WyJGT08iXX0.qwtQh-us66xjMQaBkCVPnly2B4Rj9mHcsxvB5b7Iy4zzwW63AH5xV9dmdx6anyXBCxzPExMuB8hk32IyljeiV03G8rd9ENErWscj7XJ1mCqb3ATt_oSwGwnSUf9-hmN1GQ9mBAwV_N-qucN1qfoONL-W-y6JXG6R8uTdno97AsSPakb9DrW6alrtwxF29ivNAq9xkeZdCx9eJC6GuWek9_9D44cDxO3EhkhDvVfFcSrwZB0Quh2EdFhQr8LYnTQ030Z_V_Vu32oIP8KNy1mwguOuk4KpFkSiNo_QbQk47e6W-wJGKWQmyrrk9EN8VX7WBvENNkqCY0Q_ugWw6mBEtg
-    curl -H "Authorization: Bearer $TOKEN" -i "http://localhost:8769/api-a/hi?name=JImmy"
+    curl -H "Authorization: Bearer $TOKEN" -i "http://localhost:8769/api-b/hi?name=JImmy"
     HTTP/1.1 200 
     X-Content-Type-Options: nosniff
     X-XSS-Protection: 1; mode=block

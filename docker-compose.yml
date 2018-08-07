@@ -1,12 +1,5 @@
 version: '2'
 services:
-  registry-server:
-    image: my-eureka-server:1.0.0
-    networks:
-      - scd-net
-    ports:
-      - "8081:8080"
-    mem_limit: 128m
   mq:
     image: rabbitmq:3.6.10-management-alpine
     environment:
@@ -16,8 +9,8 @@ services:
       - scd-net
     ports:
       - "15672:15672"
-    mem_limit: 256m
-  db:
+    container_name: demo-mq
+  mysql:
     image: mysql:5.7.18
     environment:
       - "MYSQL_ROOT_PASSWORD=123456"
@@ -25,14 +18,45 @@ services:
       - "3306:3306"
     networks:
       - scd-net
-    mem_limit: 256m
+    container_name: demo-mysql
   redis:
     image: redis:3.2.10-alpine
     ports:
       - "6379:6379"
     networks:
       - scd-net
-    mem_limit: 256m
+    container_name: demo-redis
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: 'gitlab.example.com'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.example.com'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - 'gitlab-config:/etc/gitlab'
+      - 'gitlab-logs:/var/log/gitlab'
+      - 'gitlab-data:/var/opt/gitlab'
+    networks:
+      - scd-net
+  jenkins:
+    image: 'jenkins/jenkins:lts'
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - 'jenkins-data:/var/jenkins_home'
+    networks:
+      - scd-net
 networks:
   scd-net:
     driver: bridge
+volumes:
+  gitlab-config:
+  gitlab-logs:
+  gitlab-data:
+  jenkins-data:

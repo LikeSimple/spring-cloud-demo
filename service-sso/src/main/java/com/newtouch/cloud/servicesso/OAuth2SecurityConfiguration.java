@@ -40,6 +40,7 @@ public class OAuth2SecurityConfiguration extends AuthorizationServerConfigurerAd
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+
         clients.inMemory()
                 .withClient("web_app")
                 .secret("web_secret")

@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
 
 # 测试用参数
-#LIMIT_IN_BYTES=268435456
-#INSTANCE_NAME=registry-server
-#NODE=1
-#REPLICAS=1
-#JAVA_OPTIONS="-Xms256M -Xmx256M"
-#JAVA_APP_NAME="-jar eureka-server.jar"
+LIMIT_IN_BYTES=268435456
+INSTANCE_NAME=registry-server
+NODE=1
+REPLICAS=3
+JAVA_OPTIONS="-Xms256M -Xmx256M"
+JAVA_APP_NAME="-jar eureka-server.jar"
 
 if [ -z JAVA_OPTIONS ]
 then
@@ -42,20 +42,23 @@ else
 
   # 注册发现集群容器名称配置
 
-  JAVA_PARAM_INSTANCE_NAME="-Deureka.instance.hostname=${INSTANCE_NAME}-${NODE}"
+  JAVA_PARAM_INSTANCE_NAME="-Deureka.instance.hostname=${INSTANCE_NAME}"
   JAVA_PARAM_REGISTER_WITH_EUREKA=""
   JAVA_PARAM_FETCH_REGISTRY=""
 
   #配置多节点复制集群访问路径
   JAVA_PARAM_DEFAULT_ZONE=""
 
-  for n in $(seq 1 ${REPLICAS})
-  do
-    REPLICAS_URL=",http://${INSTANCE_NAME}-${n}:8080/eureka/"
-    JAVA_PARAM_DEFAULT_ZONE=${JAVA_PARAM_DEFAULT_ZONE}${REPLICAS_URL}
-  done
-
-  JAVA_PARAM_DEFAULT_ZONE="-Deureka.client.service-url.defaultZone="${JAVA_PARAM_DEFAULT_ZONE:1}
+  if [ "${REPLICAS}" -ne "1" ]
+  then
+    JAVA_PARAM_INSTANCE_NAME="-Deureka.instance.hostname=${INSTANCE_NAME}-${NODE}"
+    for n in $(seq 1 ${REPLICAS})
+    do
+      REPLICAS_URL=",http://${INSTANCE_NAME}-${n}:8080/eureka/"
+      JAVA_PARAM_DEFAULT_ZONE=${JAVA_PARAM_DEFAULT_ZONE}${REPLICAS_URL}
+    done
+    JAVA_PARAM_DEFAULT_ZONE="-Deureka.client.service-url.defaultZone="${JAVA_PARAM_DEFAULT_ZONE:1}
+  fi
 
   JAVA_OPTS="${JAVA_OPTS} \
     ${JAVA_PARAM_INSTANCE_NAME}  \
@@ -65,7 +68,7 @@ else
 
 fi
 
-echo "JAVA_OPTIONS" ${JAVA_OPTS}
+#echo "JAVA_OPTIONS" ${JAVA_OPTS}
 
 exec java \
   ${JAVA_OPTS} \
